@@ -12,7 +12,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  codelessly_sdk: ^0.7.5
+  codelessly_sdk: ^0.8.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0
