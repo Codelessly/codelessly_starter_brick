@@ -5,6 +5,7 @@ void main() async {
   Codelessly.instance.initialize(
     config: CodelesslyConfig(
       authToken: "{{authToken}}",
+      {{#useSlugs}}slug: "{{slug}}",{{/useSlugs}}
     ),
   );
 
@@ -17,9 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: CodelesslyWidget(
-        layoutID: "{{layoutID}}",
-      ),
+      home: CodelesslyWidget({{^useSlugs}}\n        layoutID: "{{layoutID}}",\n      {{/useSlugs}}),
     );
   }
 }
