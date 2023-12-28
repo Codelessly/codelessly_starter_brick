@@ -40,15 +40,15 @@ vars:
     type: string
     description: Auth token for the project. Go to publish settings in your project to get the token.
     prompt: What is the auth token for your project?
-  useSlugs:
+  useSlug:
     type: boolean
-    description: Whether to use slugs for the project.
-    prompt: Do you want to use slugs for your project?
+    description: Whether to use a slug for the project.
+    prompt: Do you want to use a slug for your project?
     default: false
   slug:
     type: string
-    description: The optional slug for the project.
-    prompt: What is the slug for your project? Skip this step if you don't want to specify a slug.
+    description: The slug of the project.
+    prompt: What is the slug of your project? Skip this step if you don't want to specify a slug.
     default: ""
   layoutID:
     type: string
