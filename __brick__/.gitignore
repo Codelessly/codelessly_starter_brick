@@ -29,7 +29,11 @@ migrate_working_dir/
 .flutter-plugins-dependencies
 .pub-cache/
 .pub/
-/build/
+
+We specifically want to include the build folder for this brick
+so that services like Netlify and Vercel and directly reference this
+directory from the repository this project gets deployed from.
+#/build/
 
 # Symbolication related
 app.*.symbols

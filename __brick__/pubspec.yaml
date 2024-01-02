@@ -15,7 +15,10 @@ dependencies:
   codelessly_sdk: ^0.8.0
 
 dev_dependencies:
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/codelessly_config.json

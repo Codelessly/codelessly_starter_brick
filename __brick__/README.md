@@ -1,9 +1,3 @@
-# Codelessly Starter Project.
+# {{name}} Codelessly App
 
 {{description}}
-
-## Getting Started
-
-```
-// TODO
-```
