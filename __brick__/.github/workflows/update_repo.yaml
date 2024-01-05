@@ -31,6 +31,7 @@ jobs:
         run: |
           cd codelessly_starter_brick/__brick__
           git init
+          git checkout -b main
           git remote add origin ${{ github.repositoryUrl }}
           git config user.name Codelessly
           git config user.email codelessly@gmail.com
