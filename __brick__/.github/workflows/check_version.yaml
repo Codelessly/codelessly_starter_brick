@@ -31,14 +31,14 @@ jobs:
         run: |
           if [ "${{ env.currentVersion }}" != "${{ env.starterVersion }}" ]; then
             echo "Versions are different"
-            echo "::set-output name=update::true" >> $GITHUB_ENV
+            echo "update=true" >> $GITHUB_ENV
           else
             echo "Versions are the same"
-            echo "::set-output name=update::false" >> $GITHUB_ENV
+            echo "update=false" >> $GITHUB_ENV
           fi
       - name: print update
         run: |
           echo "Should Update: ${{ env.update }}"
-#      - name: trigger if update required
-#        if: ${{ env.update }} == 'true'
-#        run: // TODO:
+      - name: trigger if update required
+        if: ${{ env.update == 'true' }}
+        run: echo "Update processed" # TODO
