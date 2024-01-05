@@ -1,4 +1,4 @@
-name: Check Version
+name: Update Repository
 # IMPORTANT: Only run on main/master branch.
 on:
   workflow_call:
