@@ -9,6 +9,8 @@ on:
 jobs:
   check:
     runs-on: ubuntu-latest
+    outputs:
+      update: ${{ steps.jobOutput.outputs.update }}
     steps:
       - uses: actions/checkout@v2
       - name: Get current version
@@ -39,6 +41,12 @@ jobs:
       - name: print update
         run: |
           echo "Should Update: ${{ env.update }}"
-      - name: Trigger Update
-        if: ${{ env.update == 'true' }}
-        uses: ${{ github.repository }}/.github/workflows/update_repo.yml@main
+      - name: Set Job Output
+        id: jobOutput
+        run: echo "update=${{ env.update }}" >> "$GITHUB_OUTPUT"
+
+  update:
+    needs: check
+    uses: codelessly/codelessly-test-app/.github/workflows/update_repo.yaml@main
+    if: ${{ needs.check.outputs.update == 'true' }}
+    secrets: inherit

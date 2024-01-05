@@ -2,10 +2,15 @@ name: Update Repository
 # IMPORTANT: Only run on main/master branch.
 on:
   workflow_call:
+    secrets:
+      CODELESSLY_PROJECT_CONFIG:
+        required: true
+      CODELESSLY_APP_ACCESS_TOKEN:
+        required: true
   workflow_dispatch:
 
 jobs:
-  check:
+  update:
     runs-on: ubuntu-latest
     steps:
       - name: Install Dart
