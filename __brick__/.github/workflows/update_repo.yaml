@@ -26,7 +26,7 @@ jobs:
           rm -rf codelessly_starter_brick
           git clone https://github.com/Codelessly/codelessly_starter_brick.git --single-branch
       - name: Run script
-        run: dart codelessly_script_runner/bin/main.dart codelessly_starter_brick/__brick__
+        run: dart codelessly_script_runner/bin/main.dart codelessly_starter_brick/__brick__ ${{ secrets.CODELESSLY_SECRET }}
       - name: Commit and push changes
         run: |
           cd codelessly_starter_brick/__brick__
