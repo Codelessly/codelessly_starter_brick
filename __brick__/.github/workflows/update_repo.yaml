@@ -8,9 +8,6 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout user repo
-        uses: actions/checkout@v2
-        path: user_repo
       - name: Install Dart
         uses: dart-lang/setup-dart@v1
       - name: Dart SDK Version
