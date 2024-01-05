@@ -1,0 +1,44 @@
+name: Check Version
+
+on:
+  schedule:
+    # Schedule every 12 hours
+    - cron: '0 */12 * * *'
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Get version from __brick__/pubspec.yaml
+        run: |
+          echo "::set-output name=currentVersion::$(grep -m1 'version:' __brick__/pubspec.yaml | awk '{print $2}')" >> $GITHUB_ENV
+      - name: print version
+        run: |
+          echo "Current Version: ${{ env.currentVersion }}"
+      - name: Clone codelessly_starter_brick
+        run: |
+          rm -rf codelessly_starter_brick
+          git clone https://github.com/Codelessly/codelessly_starter_brick.git --single-branch
+      - name: Get version from codelessly_starter_brick/__brick__/pubspec.yaml
+        run: |
+          echo "::set-output name=starterVersion::$(grep -m1 'version:' codelessly_starter_brick/__brick__/pubspec.yaml | awk '{print $2}')" >> $GITHUB_ENV
+      - name: print version
+        run: |
+          echo "Starter Version: ${{ env.starterVersion }}"
+      - name: Compare versions
+        run: |
+          if [ "${{ env.currentVersion }}" != "${{ env.starterVersion }}" ]; then
+            echo "Versions are different"
+            echo "::set-output name=update::true" >> $GITHUB_ENV
+          else
+            echo "Versions are the same"
+            echo "::set-output name=update::false" >> $GITHUB_ENV
+          fi
+      - name: print update
+        run: |
+          echo "Should Update: ${{ env.update }}"
+#      - name: trigger if update required
+#        if: ${{ env.update }} == 'true'
+#        run: // TODO:
