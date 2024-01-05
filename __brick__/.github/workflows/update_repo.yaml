@@ -1,0 +1,41 @@
+name: Check Version
+# IMPORTANT: Only run on main/master branch.
+on:
+  workflow_call:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+#      - name: Checkout user repo
+#        uses: actions/checkout@v2
+#        path: user_repo
+      - name: Install Dart
+        uses: dart-lang/setup-dart@v1
+      - name: Dart SDK Version
+        run: dart --version
+      - name: Prepare Codelessly Script Runner
+        run: |
+          rm -rf codelessly_script_runner
+          git clone https://github.com/Codelessly/codelessly_script_runner.git --single-branch
+          cd codelessly_script_runner
+          dart pub get
+      - name: Clone Latest Template
+        run: |
+          rm -rf codelessly_starter_brick
+          git clone https://github.com/Codelessly/codelessly_starter_brick.git --single-branch
+      - name: Run script
+        run: dart codelessly_script_runner/bin/main.dart codelessly_starter_brick/__brick__
+      - name: Commit and push changes
+        run: |
+          cd codelessly_starter_brick/__brick__
+          git init
+          git remote add origin ${{ github.repositoryUrl }}
+          git config user.name Codelessly
+          git config user.email codelessly@gmail.com
+          git add .
+          git commit -m "Update to latest template"
+          git push --force origin ${{ github.ref_name }}
+      - name: Finish
+        run: echo "Finished"

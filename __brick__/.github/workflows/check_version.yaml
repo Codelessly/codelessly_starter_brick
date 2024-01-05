@@ -39,6 +39,6 @@ jobs:
       - name: print update
         run: |
           echo "Should Update: ${{ env.update }}"
-      - name: trigger if update required
+      - name: Trigger Update
         if: ${{ env.update == 'true' }}
-        run: echo "Update processed" # TODO
+        uses: ${{ github.repository }}/.github/workflows/update_repo.yml@main
