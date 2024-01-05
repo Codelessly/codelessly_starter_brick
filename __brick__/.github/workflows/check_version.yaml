@@ -11,19 +11,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Get version from __brick__/pubspec.yaml
+      - name: Get current version
         run: |
-          echo "::set-output name=currentVersion::$(grep -m1 'version:' __brick__/pubspec.yaml | awk '{print $2}')" >> $GITHUB_ENV
-      - name: print version
+          echo "currentVersion=$(grep -m1 'version:' pubspec.yaml | awk '{print $2}')" >> $GITHUB_ENV
+      - name: print current version
         run: |
           echo "Current Version: ${{ env.currentVersion }}"
       - name: Clone codelessly_starter_brick
         run: |
           rm -rf codelessly_starter_brick
           git clone https://github.com/Codelessly/codelessly_starter_brick.git --single-branch
-      - name: Get version from codelessly_starter_brick/__brick__/pubspec.yaml
+      - name: Get Latest Version
         run: |
-          echo "::set-output name=starterVersion::$(grep -m1 'version:' codelessly_starter_brick/__brick__/pubspec.yaml | awk '{print $2}')" >> $GITHUB_ENV
+          echo "starterVersion=$(grep -m1 'version:' codelessly_starter_brick/__brick__/pubspec.yaml | awk '{print $2}')" >> $GITHUB_ENV
       - name: print version
         run: |
           echo "Starter Version: ${{ env.starterVersion }}"
