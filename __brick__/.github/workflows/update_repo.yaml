@@ -38,7 +38,10 @@ jobs:
           rm -rf codelessly_starter_brick
           git clone https://github.com/Codelessly/codelessly_starter_brick.git --single-branch
       - name: Move template to main repo
-        run: mv codelessly_starter_brick/__brick__ main_repo
+        run: |
+          shopt -s dotglob
+          mv codelessly_starter_brick/__brick__/* main_repo
+          shopt -u dotglob
       - name: Run script
         run: dart codelessly_script_runner/bin/main.dart main_repo ${{ secrets.CODELESSLY_PROJECT_CONFIG }}
       - name: Clean up before commit
