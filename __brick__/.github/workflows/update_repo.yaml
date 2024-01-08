@@ -12,15 +12,12 @@ on:
 jobs:
   update:
     runs-on: ubuntu-latest
-    permissions:
-      # Give the default GITHUB_TOKEN write permission to commit and push the
-      # added or changed files to the repository.
-      contents: write
     steps:
       - name: Checkout main repo
         uses: actions/checkout@v4
         with:
           path: main_repo
+          token: ${{ secrets.CODELESSLY_APP_ACCESS_TOKEN }}
       - name: Install Dart
         uses: dart-lang/setup-dart@v1
       - name: Dart SDK Version
@@ -54,21 +51,10 @@ jobs:
         with:
           commit_message: "Update to latest template"
           commit_options: '--no-verify --signoff'
-#          file_pattern: main_repo
           repository: main_repo
           commit_user_name: Codelessly Github Actions Bot
           commit_user_email: codelessly@gmail.com
           commit_author: Codelessly Actions Bot <codelessly@gmail.com>
-      #      - name: Commit and push changes
-#        run: |
-#          cd codelessly_starter_brick/__brick__
-#          git init
-#          git checkout -b main
-#          git remote add origin https://github.repository_owner:${{ secrets.CODELESSLY_APP_ACCESS_TOKEN }}@github.com/${{ github.repository }}.git
-#          git config user.name Codelessly
-#          git config user.email codelessly@gmail.com
-#          git add .
-#          git commit -m "Update to latest template"
-#          git push --force origin ${{ github.ref_name }}
+          token: ${{ secrets.CODELESSLY_APP_ACCESS_TOKEN }}
       - name: Finish
         run: echo "Finished"
