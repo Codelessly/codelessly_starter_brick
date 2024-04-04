@@ -12,10 +12,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  codelessly_sdk: ^1.5.0
+  codelessly_sdk: ^1.6.0
 
 dev_dependencies:
-  flutter_lints: ^3.0.1
+  flutter_lints: ^3.0.2
 
 flutter:
   uses-material-design: true
