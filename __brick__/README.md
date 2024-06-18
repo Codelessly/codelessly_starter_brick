@@ -4,7 +4,7 @@
 
 URL: https://{{repo_owner}}.github.io/{{repo_name}}
 
-[![Publish to Github Pages](https://github.com/{{repo_owner}}/{{repo_name}}/actions/workflows/publish_pages.yaml/badge.svg)](https://github.com/{{repo_owner}}/{{repo_owner}}/actions/workflows/publish_pages.yaml)
+[![Publish to Github Pages](https://github.com/{{repo_owner}}/{{repo_name}}/actions/workflows/publish_pages.yaml/badge.svg)](https://github.com/{{repo_owner}}/{{repo_name}}/actions/workflows/publish_pages.yaml)
 
 ## IMPORTANT
 
